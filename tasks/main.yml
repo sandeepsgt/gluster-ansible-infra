@@ -2,7 +2,7 @@
 # tasks file for gluster.infra
 - name: Add firewall rules
   import_role:
-    name: "gluster.infra/roles/firewall_config"
+    name: "{{ playbook_dir }}/roles/gluster-ansible-infra/roles/firewall_config"
   when: >
      gluster_infra_fw_ports is defined or
      gluster_infra_fw_services is defined
@@ -11,13 +11,13 @@
 
 - name: Configure the bricks
   import_role:
-    name: "gluster.infra/roles/backend_setup"
+    name: "{{ playbook_dir }}/roles/gluster-ansible-infra/roles/backend_setup"
   tags:
     - backend_setup
 
 - name: Reset backend
   import_role:
-    name: "gluster.infra/roles/backend_reset"
+    name: "{{ playbook_dir }}/roles/gluster-ansible-infra/roles/backend_reset"
   when: >
     gluster_infra_reset_mnt_paths is defined or
     gluster_infra_reset_volume_groups is defined or
